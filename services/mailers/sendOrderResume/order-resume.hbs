@@ -1,0 +1,191 @@
+<html>
+
+<head>
+    <title>Nouvelle commande</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+
+    <style type="text/css">
+        .__globalContainer {
+            background-color: #f1f1f1;
+            font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .__container {
+            width: 70%;
+            margin: auto;
+            background-color: #fff;
+            padding: 40px;
+        }
+
+        .__topHeader {
+            background-color: #E84F7B;
+            background-image: linear-gradient(45deg, #d64870 25%, transparent 25%, transparent 75%, #d64870 75%), linear-gradient(45deg, #d64870 25%, transparent 25%, transparent 75%, #d64870 75%);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px;
+            padding: 20px;
+        }
+
+        .__topHeaderTitle {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .__cartContent {
+            padding: 40px;
+        }
+
+        .__totalPrice {
+            font-size: 42px;
+        }
+
+        .__id {
+            font-size: 12px;
+        }
+
+        .__separator {
+            background-color: #f1f1f1;
+            height: 2px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .__row {
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .__col1 {
+            float: left;
+        }
+
+        .__col2 {
+            float: right
+        }
+
+        .__free {
+            color: green;
+            font-weight: bold;
+        }
+
+        .__bold {
+            font-weight: bold;
+        }
+
+        .__noReply {
+            font-size: 14px;
+            color: grey;
+            text-align: center;
+        }
+
+        .__logo {
+            width: 50%;
+            height: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .__totalPrice {
+                font-size: 24px;
+                margin-top: 10px;
+            }
+
+            .__container {
+                width: 90%;
+                margin: auto;
+                background-color: #fff;
+                padding: 10px;
+            }
+
+            .__cartContent {
+                padding: 10px;
+            }
+
+        }
+    </style>
+</head>
+
+<body class="__globalContainer">
+    <div class="__container">
+        <div class="__topHeader">
+            <div class="__topHeaderTitle">
+                Merci d'avoir passé commande, {{ firstname }}.
+            </div>
+        </div>
+
+        <div class="__cartContent">
+            <div class="__row __totalPrice">
+                <div class="__col1">Total</div>
+                <div class="__col2">{{ getPrice totalPrice }}€</div>
+            </div>
+            <div class="__row">
+                <div class="__col1"></div>
+                <div class="__col2">{{ day }}</div>
+            </div>
+
+            <div class="__separator"></div>
+
+            <div class="__row">
+                <div class="__col1">Référence</div>
+                <div class="__col2 __id">#{{id}}</div>
+            </div>
+
+            <div class="__row">
+                <div class="__col1 __bold">Livraison au</div>
+                <div class="__col2">{{address}}</div>
+            </div>
+
+            <div class="__row">
+                <div class="__col1 __bold">Livraison prévu à</div>
+                <div class="__col2">{{plannedAt}}</div>
+            </div>
+
+            {{#if (isPayed paymentType)}}
+            <div class="__row">
+                <div class="__col1">Paiement</div>
+                <div class="__col2">Payé en ligne</div>
+            </div>
+            {{/if}}
+
+            <div class="__separator"></div>
+
+            {{#each cart}}
+            <div class="__row">
+                <div class="__col1">{{qty}}x {{name}}</div>
+                <div class="__col2">{{getPrice total}}€</div>
+            </div>
+            {{/each}}
+
+            <div class="__separator"></div>
+
+            <div class="__row">
+                <div class="__col1">Sous-total</div>
+                <div class="__col2">{{getPrice totalPrice}}€</div>
+            </div>
+
+            <div class="__row">
+                <div class="__col1">Frais de livraison</div>
+                <div class="__col2 __free">Gratuit</div>
+            </div>
+
+            <div class="__row">
+                <div class="__col1">Montant total</div>
+                <div class="__col2">{{getPrice totalPrice}}€</div>
+            </div>
+
+            <div class="__separator"></div>
+
+            <div class="__noReply">
+                Ce message est généré automatiquement. Merci de ne pas y répondre.
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
