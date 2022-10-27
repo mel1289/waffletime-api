@@ -1,7 +1,7 @@
 module.exports = Object.freeze({
   KITCHEN_COORDS: {
-    lat: 47.919472,
-    lng: 1.938955,
+    lat: 0.00,
+    lng: 0.00,
   },
   DELIVERY_MAX_DELAY: 10, // Retard maximum sur une commande
 
